@@ -1,3 +1,11 @@
+---
+permalink: /
+author_profile: true
+redirect_from: 
+  - /about/
+  - /about.html
+---
+
 Hi! I’m a master’s researcher at IIT Kharagpur’s CNeRG Lab, advised by Prof. Pawan Goyal, where I explore multimodal question answering, answer evaluation, and model interpretability. My current projects span two high-impact domains: (i) Visual QA for healthcare images, benchmarking large vision-language models inside hospitals, and (ii) reasoning-driven QA on lecture videos, helping students obtain richer, long-form explanations from MOOCs. I enjoy fusing language, vision, and reasoning signals to build systems that are both accurate and human-centric.
 
 I’ve released several datasets and papers along this theme—most recently ERVQA (EMNLP 2024), a first-of-its-kind hospital VQA benchmark, and EduVidQA, an under-review corpus for generating and assessing detailed answers to student questions on lecture videos. When I’m not debugging models, you’ll likely find me making music, watching films, or watching football/cricket.
