@@ -22,12 +22,12 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "ray.jpeg"
   name             : "Sourjyadip Ray"
   pronouns         : "he/him" 
   bio              : "Research Scholar"
   location         : "Kharagpur"
-  employer         : "Indian Institute of Technology, Kharagpur"
+  employer         : "IIT Kharagpur"
   uri              : # URL
   email            : "sourjyadipray@gmail.com" 
 
