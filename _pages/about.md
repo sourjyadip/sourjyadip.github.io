@@ -13,11 +13,11 @@ I’ve released several datasets and papers along this theme—most recently [ER
 # Research Interests
 More recently, I’m excited about agentic simulation / world models: developing interpretable and causal mechanisms for understanding agent behavior, and designing stakeholder-aligned evaluation that supports process-level diagnosis (not just end-task scores). If these topics excite you too, I would be keen to collaborate with you. Please reach out to me on my email!
 
-# Updates
-- **MS (by Research) expected thesis submission:** January 2026
-- **EMNLP 2025 (Main) paper accepted:** *EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos*  August 2026 
-- **Teaching Assistant:** Social Computing (CS60017), August 2025
-- **Teaching Assistant:** Deep Learning (CS60010), January 2025
+# Recent Updates
+- **January 2026** MS (by Research) expected thesis submission
+- **August 2025** EMNLP 2025 (Main) paper accepted: *EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos*  
+- **August 2025** Teaching Assistant: Social Computing (CS60017) 
+- **January 2025** Teaching Assistant: Deep Learning (CS60010)
 
 
 
