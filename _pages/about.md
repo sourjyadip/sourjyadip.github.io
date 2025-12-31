@@ -15,9 +15,9 @@ More recently, I’m excited about agentic simulation / world models: developing
 
 # Research Updates
 - **MS (by Research) expected thesis submission:** January 2026
-- **EMNLP 2025 (Main) paper accepted:** *EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos*   
-- **Teaching Assistant:** Social Computing (CS60017), Autumn 2025
-- **Teaching Assistant:** Deep Learning (CS60010), Spring 2025
+- **EMNLP 2025 (Main) paper accepted:** *EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos*  August 2026 
+- **Teaching Assistant:** Social Computing (CS60017), August 2025
+- **Teaching Assistant:** Deep Learning (CS60010), January 2025
 
 
 
