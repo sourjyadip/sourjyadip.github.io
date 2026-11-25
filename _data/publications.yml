@@ -1,0 +1,45 @@
+# Publications shown on the homepage (newest first).
+# Your name is highlighted automatically. Use "*" after a name for equal contribution.
+# Links: any of paper / arxiv / code / page / data / slides / bibtex / demo
+
+- title: "EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos"
+  authors: "Sourjyadip Ray, Shubham Sharma, Somak Aditya, Pawan Goyal"
+  venue: "EMNLP 2025"
+  venue_long: "Empirical Methods in Natural Language Processing (Main Conference)"
+  year: 2025
+  tldr: "A benchmark of 5,252 real and synthetic student questions grounded in 296 computer-science lecture videos, used to study how well multimodal LLMs produce long-form answers and how to evaluate those answers in line with what students actually value."
+  links:
+    paper: "https://aclanthology.org/2025.emnlp-main.1760/"
+    arxiv: "https://arxiv.org/abs/2509.24120"
+    code: "https://github.com/sourjyadip/eduvidqa-emnlp25"
+
+- title: "ERVQA: A Dataset to Benchmark the Readiness of Large Vision Language Models in Hospital Environments"
+  authors: "Sourjyadip Ray, Kushal Gupta, Soumi Kundu, Payal Arvind Kasat, Somak Aditya, Pawan Goyal"
+  venue: "EMNLP 2024"
+  venue_long: "Empirical Methods in Natural Language Processing (Main Conference)"
+  year: 2024
+  tldr: "A visual question answering benchmark built from emergency-room scenes. It tests whether large vision-language models are ready for hospital settings and includes an error taxonomy for diagnosing where they fail."
+  links:
+    arxiv: "https://arxiv.org/abs/2410.06420"
+    page: "https://sourjyadip.github.io/ervqa-page/"
+    data: "https://github.com/sourjyadip/ervqa-data"
+
+- title: "SERPENT-VLM: Self-Refining Radiology Report Generation Using Vision Language Models"
+  authors: "Manav Nitin Kapadnis, Sohan Patnaik, Abhilash Nandy, Sourjyadip Ray, Pawan Goyal, Debdoot Sheet"
+  venue: "ClinicalNLP @ NAACL 2024"
+  venue_long: "6th Clinical NLP Workshop at NAACL 2024 (Oral)"
+  year: 2024
+  tldr: "A self-refining training objective that aligns pooled image representations with the generated report to reduce hallucination in radiology report generation. It reaches state-of-the-art results on IU X-ray and ROCO."
+  links:
+    paper: "https://aclanthology.org/2024.clinicalnlp-1.24/"
+    arxiv: "https://arxiv.org/abs/2404.17912"
+
+- title: "Intent Identification and Entity Extraction for Healthcare Queries in Indic Languages"
+  authors: "Ankan Mullick, Ishani Mondal*, Sourjyadip Ray*, R. Raghav, G. Sai Chaitanya, Pawan Goyal"
+  venue: "Findings of EACL 2023"
+  venue_long: "Findings of the European Chapter of the ACL"
+  year: 2023
+  tldr: "Annotated healthcare query datasets in English and six Indic languages for intent detection and entity extraction, with a study of cross-lingual transfer strategies for low-resource health settings."
+  links:
+    paper: "https://aclanthology.org/2023.findings-eacl.140/"
+    arxiv: "https://arxiv.org/abs/2302.09685"

@@ -1,0 +1,21 @@
+# News items for the homepage (newest first). Markdown is allowed in "text".
+# The first `news_visible` items (set in _layouts/home.html) are shown; the rest fold under "Earlier".
+
+- date: "Jun 2026"
+  text: "Selected for the **BlueDot Technical AI Safety** course (June 2026 cohort)."
+- date: "May 2026"
+  text: "Joined **Microsoft Research India** as a Predoctoral Visiting Researcher, working with [Sunayana Sitaram](https://www.microsoft.com/en-us/research/people/susitara/) and [Mohit Jain](https://www.microsoft.com/en-us/research/people/mohja/). The position is sponsored by KCDH, Ashoka University."
+- date: "Feb 2026"
+  text: "Submitted my MS thesis, *Human Centered Benchmarking and Evaluation of Long-form Multimodal Question Answering Tasks in Specialized Domains*."
+- date: "Nov 2025"
+  text: "Attended **EMNLP 2025** in Suzhou as a student volunteer."
+- date: "Aug 2025"
+  text: "**EduVidQA** accepted to the **EMNLP 2025** Main Conference."
+- date: "Nov 2024"
+  text: "Attended **EMNLP 2024** in Miami as a student volunteer, supported by the Diversity & Inclusion Travel Grant."
+- date: "Sep 2024"
+  text: "**ERVQA** accepted to the **EMNLP 2024** Main Conference."
+- date: "Apr 2024"
+  text: "**SERPENT-VLM** accepted as an oral at the Clinical NLP Workshop @ **NAACL 2024**."
+- date: "Jan 2023"
+  text: "Paper on healthcare intent identification in Indic languages accepted to **Findings of EACL 2023**."

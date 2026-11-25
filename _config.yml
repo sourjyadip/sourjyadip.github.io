@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "About"
+title                    : "Sourjyadip Ray"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
+name                     : &name "Sourjyadip Ray"
+description              : &description "Sourjyadip Ray: Predoctoral Visiting Researcher at Microsoft Research India and MS (by Research) graduate of IIT Kharagpur, working on human-centered evaluation, multimodal QA and agentic simulation."
 url                      : https://sourjyadip.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "sourjyadip/sourjyadip.github.io"
@@ -25,9 +25,9 @@ author:
   avatar           : "ray.jpeg"
   name             : "Sourjyadip Ray"
   pronouns         : "he/him" 
-  bio              : "Research Scholar"
-  location         : "Kharagpur"
-  employer         : "IIT Kharagpur"
+  bio              : "Predoctoral Visiting Researcher"
+  location         : "Bengaluru, India"
+  employer         : "Microsoft Research India"
   uri              : # URL
   email            : "sourjyadipray@gmail.com" 
 

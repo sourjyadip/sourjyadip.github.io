@@ -1,23 +1,24 @@
 ---
 permalink: /
-author_profile: true
-redirect_from: 
+layout: home
+title: "Sourjyadip Ray"
+status_note: "I am applying to **PhD programs for Fall 2027**. If our interests align, I'd love to hear from you."
+redirect_from:
   - /about/
   - /about.html
 ---
 
-Hi! I’m a MS (by Research) student at IIT Kharagpur’s [Complex Networks Research Group (CNeRG) Lab](https://cnerg-iitkgp.github.io/), advised by [Dr. Pawan Goyal](https://cse.iitkgp.ac.in/~pawang/), where I explore multimodal question answering, answer evaluation, and model interpretability. My current projects span two high-impact domains: (i) Visual QA for healthcare images, benchmarking large vision-language models inside hospitals, and (ii) reasoning-driven QA on lecture videos, helping students obtain richer, long-form explanations from MOOCs. I have been working on fusing language, vision, and reasoning signals from synthetic data to build systems that are both accurate and human-centric.
+I am a Predoctoral Visiting Researcher at [Microsoft Research India](https://www.microsoft.com/en-us/research/lab/microsoft-research-india/), where I work with [Dr. Sunayana Sitaram](https://www.microsoft.com/en-us/research/people/susitara/) and [Dr. Mohit Jain](https://www.microsoft.com/en-us/research/people/mohja/) on healthcare-focused **multi-agent social simulations** and on **benchmarking and evaluating synthetic data**. My position is sponsored by the Koita Center for Digital Health at Ashoka University.
 
-I’ve released several datasets and papers along this theme—most recently [ERVQA (EMNLP 2024 Main)](https://arxiv.org/abs/2410.06420), a first-of-its-kind hospital VQA benchmark, and [EduVidQA (EMNLP 2025 Main)](https://aclanthology.org/2025.emnlp-main.1760.pdf), a benchmark for generating and assessing detailed answers to student questions on lecture videos. When I’m not debugging models, you’ll likely find me making music, watching films, or watching football/cricket.
+Before this, I did my MS (by Research) in Computer Science at **IIT Kharagpur** in the [CNeRG Lab](https://cnerg-iitkgp.github.io/), advised by [Dr. Pawan Goyal](https://cse.iitkgp.ac.in/~pawang/) and working closely with [Dr. Somak Aditya](https://adityasomak.github.io/). My thesis covers *human-centered benchmarking and evaluation of long-form multimodal question answering in specialized domains*. As part of it, I built [ERVQA](https://arxiv.org/abs/2410.06420) (EMNLP 2024), a benchmark that tests whether vision-language models are ready for hospital environments, and [EduVidQA](https://aclanthology.org/2025.emnlp-main.1760/) (EMNLP 2025), which studies long-form answers to students' questions about lecture videos.
 
-# Research Interests
-More recently, I’m excited about agentic simulation / world models: developing interpretable and causal mechanisms for understanding agent behavior, and designing stakeholder-aligned evaluation that supports process-level diagnosis (not just end-task scores). If these topics excite you too, I would be keen to collaborate with you. Please reach out to me on my email!
+### Research interests
 
-# Recent Updates
-- **January 2026** MS (by Research) expected thesis submission
-- **August 2025** EMNLP 2025 (Main) paper accepted: *EduVidQA: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos*  
-- **August 2025** Teaching Assistant: Social Computing (CS60017) 
-- **January 2025** Teaching Assistant: Deep Learning (CS60010)
+My research asks one question: *how do we know whether an AI system is ready for the people and settings it is meant to serve?* I am especially interested in:
 
+- **Human-centered evaluation.** Stakeholder-aligned metrics and benchmarks that diagnose *where* and *why* models fail, at the process level, rather than reporting a single end-task score.
+- **Multimodal reasoning in high-stakes domains.** Vision-language and video-language models for healthcare and education, where answers must be long-form, grounded and trustworthy.
+- **Agentic simulation and synthetic data.** Multi-agent social simulations and world models: interpretable, causal accounts of agent behavior, and principled ways to decide when synthetic data can be trusted.
+{: .interests}
 
-
+Outside research, I make music, watch a lot of films, and follow football and cricket.

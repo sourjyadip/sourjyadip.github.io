@@ -1,0 +1,76 @@
+# Structured CV content rendered on the homepage. Markdown is allowed in list items.
+
+experience:
+  - role: "Predoctoral Visiting Researcher"
+    org: "Microsoft Research India"
+    url: "https://www.microsoft.com/en-us/research/lab/microsoft-research-india/"
+    place: "Bengaluru"
+    dates: "May 2026 – Present"
+    people: "Mentors: Dr. Sunayana Sitaram, Dr. Mohit Jain"
+    points:
+      - "Healthcare-specific multi-agent social simulations, and benchmarking and evaluation of synthetic data."
+      - "Sponsored by the Koita Center for Digital Health, Ashoka University (KCDH-A), as a Research Data Officer."
+  - role: "Project Officer (Research)"
+    org: "SRIC, IIT Kharagpur"
+    place: "Kharagpur"
+    dates: "Jul 2021 – Apr 2026"
+    people: "PIs: Dr. Pawan Goyal, Dr. Somak Aditya"
+    points:
+      - "*Voice-based Natural Interaction for Goal-Oriented Tasks in Healthcare*"
+      - "*Using Large Language Models to Enhance Learning Efficiency and Student Engagement in the Indian Education System*"
+  - role: "Research Intern"
+    org: "Visual Information Processing Lab, IIT Kharagpur"
+    place: "Kharagpur"
+    dates: "Jun 2019"
+    people: "Advisor: Dr. Jayanta Mukhopadhyay"
+    points:
+      - "Spatial comparison and psycho-visual analysis of eye-gaze data against saliency maps."
+
+education:
+  - degree: "MS (by Research), Computer Science and Engineering"
+    school: "Indian Institute of Technology Kharagpur"
+    dates: "2022 – 2026"
+    details:
+      - "GPA 9.09 / 10 · Advisor: Dr. Pawan Goyal"
+      - "Thesis: *Human Centered Benchmarking and Evaluation of Long-form Multimodal Question Answering Tasks in Specialized Domains* (submitted; defense scheduled before Jan 2027)"
+  - degree: "B.Tech., Computer Science and Engineering"
+    school: "SRM Institute of Science and Technology"
+    dates: "2017 – 2021"
+    details:
+      - "GPA 9.03 / 10"
+      - "Major project: software design and development of a 6-DOF remotely operated vehicle for underwater structural inspection"
+
+teaching:
+  - course: "Social Computing (CS60017)"
+    terms: "Autumn 2023, 2024, 2025"
+  - course: "Deep Learning (CS60010)"
+    terms: "Spring 2024, 2025"
+  - course: "Natural Language Processing (CS60075)"
+    terms: "Spring 2023"
+
+service:
+  - "**Reviewer**, ACL Rolling Review: Jun 2024, Oct 2024, Feb 2025, May 2025"
+  - "**Student Volunteer**, EMNLP 2024 and EMNLP 2025"
+  - "**Mentor** to 5+ Bachelor's and Master's thesis students, and to several research interns at the [CNeRG Lab](https://cnerg-iitkgp.github.io/), IIT Kharagpur"
+
+awards:
+  - year: "2026"
+    text: "Selected for the BlueDot Technical AI Safety course"
+  - year: "2024"
+    text: "Diversity & Inclusion Travel Grant, EMNLP 2024"
+  - year: "2023–24"
+    text: "Graduate Travel Grants, IndoML 2023 and IndoML 2024"
+  - year: "2022"
+    text: "AI4ICPS Chanakya Fellowship, IIT Kharagpur"
+  - year: "2022"
+    text: "Qualified GATE 2022 (Computer Science and Information Technology)"
+  - year: "2019"
+    text: "Honorable Mention, ACM ICPC Asia Amritapuri Onsite Regionals (2,000+ teams)"
+
+talks:
+  - title: "Datasets and Challenges in Domain-Specific Multimodal Question Answering"
+    venue: "Workshop on Responsible AI, CNeRG Lab, IIT Kharagpur"
+  - title: "Social Computing in the Era of LLMs"
+    venue: "Guest lecture, Social Computing (CS60017), IIT Kharagpur"
+  - title: "Social Computing in Online Medical and Healthcare Platforms"
+    venue: "Guest lecture, Social Computing (CS60017), IIT Kharagpur"

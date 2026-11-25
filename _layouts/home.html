@@ -1,0 +1,274 @@
+<!doctype html>
+{%- assign a = site.author -%}
+{%- assign r = site.data.resume -%}
+{%- assign me = a.name -%}
+{%- assign me_html = '<span class="me">' | append: me | append: '</span>' -%}
+{%- assign cv_url = '/files/PhD_CV_Sourjyadip_Ray.pdf' | relative_url -%}
+{%- assign news_visible = 6 -%}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ a.name }}</title>
+  <meta name="description" content="{{ site.description | escape }}">
+  <meta name="author" content="{{ a.name }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ a.name }}">
+  <meta property="og:description" content="{{ site.description | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/images/' | append: a.avatar | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon-180x180.png' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ a.name }}",
+    "url": "{{ site.url }}",
+    "email": "mailto:{{ a.email }}",
+    "jobTitle": "Predoctoral Visiting Researcher",
+    "affiliation": "Microsoft Research India",
+    "alumniOf": ["Indian Institute of Technology Kharagpur", "SRM Institute of Science and Technology"],
+    "sameAs": ["{{ a.googlescholar }}", "https://github.com/{{ a.github }}", "https://www.linkedin.com/in/{{ a.linkedin }}"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#about">Skip to content</a>
+
+  <nav class="topnav" aria-label="Sections">
+    <div class="topnav__inner">
+      <a class="topnav__name" href="#top">{{ a.name }}</a>
+      <div class="topnav__links">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#more">More</a>
+        <a href="{{ cv_url }}">CV</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="top" class="wrap">
+
+    <!-- ============ Hero ============ -->
+    <header class="hero">
+      <img class="hero__photo" src="{{ '/images/' | append: a.avatar | relative_url }}" alt="Portrait of {{ a.name }}" width="220" height="216">
+      <div class="hero__text">
+        <h1 class="hero__name">{{ a.name }}</h1>
+        <p class="hero__role">Predoctoral Visiting Researcher, <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-india/">Microsoft Research India</a></p>
+        <p class="hero__sub">MS (by Research), CSE, IIT Kharagpur &middot; Human-centered evaluation &middot; Multimodal &amp; agentic AI</p>
+
+        <ul class="links" aria-label="Contact and profiles">
+          <li><a href="mailto:{{ a.email }}">
+            <svg viewBox="0 0 24 24" class="stroke" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>Email</a></li>
+          <li><a href="{{ cv_url }}">
+            <svg viewBox="0 0 24 24" class="stroke" aria-hidden="true"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h7"/></svg>CV</a></li>
+          <li><a href="{{ a.googlescholar }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>Scholar</a></li>
+          <li><a href="https://github.com/{{ a.github }}">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/{{ a.linkedin }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></li>
+        </ul>
+      </div>
+    </header>
+
+    {%- if page.status_note %}
+    <p class="status"><span class="status__dot" aria-hidden="true"></span><span>{{ page.status_note | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></p>
+    {%- endif %}
+
+    <!-- ============ About ============ -->
+    <section id="about" class="section">
+      <h2 class="section__label">About</h2>
+      <div class="section__body prose">
+        {{ content }}
+      </div>
+    </section>
+
+    <!-- ============ News ============ -->
+    <section id="news" class="section">
+      <h2 class="section__label">News</h2>
+      <div class="section__body">
+        <ul class="news">
+          {%- for n in site.data.news limit: news_visible %}
+          <li><span class="news__date">{{ n.date }}</span><span class="news__text">{{ n.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+          {%- endfor %}
+        </ul>
+        {%- if site.data.news.size > news_visible %}
+        <details class="more-news">
+          <summary>Earlier news</summary>
+          <ul class="news">
+            {%- for n in site.data.news offset: news_visible %}
+            <li><span class="news__date">{{ n.date }}</span><span class="news__text">{{ n.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+            {%- endfor %}
+          </ul>
+        </details>
+        {%- endif %}
+      </div>
+    </section>
+
+    <!-- ============ Publications ============ -->
+    <section id="publications" class="section">
+      <h2 class="section__label">Publications</h2>
+      <div class="section__body">
+        <ol class="pubs">
+          {%- for p in site.data.publications %}
+          <li class="pub">
+            <div class="pub__venue" title="{{ p.venue_long }}">{{ p.venue }}</div>
+            <div class="pub__main">
+              {%- assign first_link = p.links.paper | default: p.links.arxiv %}
+              <h3 class="pub__title">{% if first_link %}<a href="{{ first_link }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
+              <p class="pub__authors">{{ p.authors | replace: me, me_html }}</p>
+              <p class="pub__venue-long">{{ p.venue_long }}</p>
+              {%- if p.tldr %}<p class="pub__tldr">{{ p.tldr }}</p>{% endif %}
+              <p class="pub__links">
+                {%- for l in p.links %}
+                <a class="tag" href="{{ l[1] }}">{% case l[0] %}{% when 'paper' %}Paper{% when 'arxiv' %}arXiv{% when 'code' %}Code{% when 'page' %}Project page{% when 'data' %}Data{% when 'slides' %}Slides{% when 'bibtex' %}BibTeX{% when 'demo' %}Demo{% else %}{{ l[0] | capitalize }}{% endcase %}</a>
+                {%- endfor %}
+              </p>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+        <p class="note">* equal contribution. For a complete and current list, see <a href="{{ a.googlescholar }}">Google Scholar</a>.</p>
+      </div>
+    </section>
+
+    <!-- ============ Experience ============ -->
+    <section id="experience" class="section">
+      <h2 class="section__label">Experience</h2>
+      <div class="section__body">
+        <ul class="entries">
+          {%- for e in r.experience %}
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{{ e.role }}</h3>
+              <span class="entry__dates">{{ e.dates }}</span>
+            </div>
+            <p class="entry__org">{% if e.url %}<a href="{{ e.url }}">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}{% if e.place %}, {{ e.place }}{% endif %}</p>
+            {%- if e.people %}<p class="entry__people">{{ e.people }}</p>{% endif %}
+            {%- if e.points %}
+            <ul class="entry__points">
+              {%- for pt in e.points %}<li>{{ pt | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}
+            </ul>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ Education ============ -->
+    <section id="education" class="section">
+      <h2 class="section__label">Education</h2>
+      <div class="section__body">
+        <ul class="entries">
+          {%- for e in r.education %}
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{{ e.school }}</h3>
+              <span class="entry__dates">{{ e.dates }}</span>
+            </div>
+            <p class="entry__org">{{ e.degree }}</p>
+            <ul class="entry__points">
+              {%- for d in e.details %}<li>{{ d | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}
+            </ul>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ Teaching / Service / Awards / Talks ============ -->
+    <section id="more" class="section">
+      <h2 class="section__label">Teaching &amp; Service</h2>
+      <div class="section__body">
+        <h3 class="sub">Teaching Assistant, IIT Kharagpur</h3>
+        <ul class="rows">
+          {%- for t in r.teaching %}
+          <li><span>{{ t.course }}</span><span class="rows__meta">{{ t.terms }}</span></li>
+          {%- endfor %}
+        </ul>
+
+        <h3 class="sub">Service &amp; Mentoring</h3>
+        <ul class="plain">
+          {%- for s in r.service %}<li>{{ s | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <h2 class="section__label">Honors</h2>
+      <div class="section__body">
+        <ul class="rows rows--year">
+          {%- for w in r.awards %}
+          <li><span class="rows__year">{{ w.year }}</span><span>{{ w.text }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="talks" class="section">
+      <h2 class="section__label">Talks</h2>
+      <div class="section__body">
+        <ul class="plain talks">
+          {%- for t in r.talks %}
+          <li><span class="talks__title">{% if t.slides %}<a href="{{ t.slides }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="talks__venue">{{ t.venue }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>&copy; {{ site.time | date: '%Y' }} {{ a.name }}</span>
+      <span>Last updated {{ site.time | date: '%B %Y' }}</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t) return t;
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>
