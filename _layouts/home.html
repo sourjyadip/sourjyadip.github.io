@@ -7,36 +7,7 @@
 {%- assign news_visible = 6 -%}
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ a.name }}</title>
-  <meta name="description" content="{{ site.description | escape }}">
-  <meta name="author" content="{{ a.name }}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="{{ a.name }}">
-  <meta property="og:description" content="{{ site.description | escape }}">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:image" content="{{ '/images/' | append: a.avatar | absolute_url }}">
-  <meta name="twitter:card" content="summary">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon-180x180.png' | relative_url }}">
-  <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon.svg' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
-
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-      } catch (e) {}
-    })();
-  </script>
+{% include site/head.html %}
 
   <script type="application/ld+json">
   {
@@ -56,23 +27,7 @@
 <body>
   <a class="skip" href="#about">Skip to content</a>
 
-  <nav class="topnav" aria-label="Sections">
-    <div class="topnav__inner">
-      <a class="topnav__name" href="#top">{{ a.name }}</a>
-      <div class="topnav__links">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#experience">Experience</a>
-        <a href="#more">More</a>
-        <a href="{{ cv_url }}">CV</a>
-      </div>
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
-      </button>
-    </div>
-  </nav>
+{% include site/nav.html home=true %}
 
   <main id="top" class="wrap">
 
@@ -247,28 +202,6 @@
 
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <span>&copy; {{ site.time | date: '%Y' }} {{ a.name }}</span>
-      <span>Last updated {{ site.time | date: '%B %Y' }}</span>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      var root = document.documentElement;
-      var btn = document.querySelector('.theme-toggle');
-      function current() {
-        var t = root.getAttribute('data-theme');
-        if (t) return t;
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-      btn.addEventListener('click', function () {
-        var next = current() === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('theme', next); } catch (e) {}
-      });
-    })();
-  </script>
+{% include site/footer.html %}
 </body>
 </html>

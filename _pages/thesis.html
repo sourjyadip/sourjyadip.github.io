@@ -1,0 +1,326 @@
+---
+layout: doc
+permalink: /thesis/
+title: "MS Thesis · Sourjyadip Ray"
+heading: "Human-Centered Benchmarking and Evaluation of Long-form Multimodal Question Answering Tasks in Specialized Domains"
+kicker: "MS (by Research) thesis · IIT Kharagpur"
+description: "Overview of Sourjyadip Ray's MS thesis at IIT Kharagpur: human-centered benchmarks (ERVQA, EduVidQA) and evaluation methods for long-form multimodal question answering in healthcare and education."
+meta:
+  - "**Advisor:** Prof. Pawan Goyal · **Mentor:** Prof. Somak Aditya"
+  - "Department of Computer Science and Engineering, IIT Kharagpur"
+  - "Submitted February 2026"
+toc:
+  - id: summary
+    label: Summary
+  - id: framework
+    label: Framework
+  - id: questions
+    label: Research questions
+  - id: ervqa
+    label: ERVQA
+  - id: eduvidqa
+    label: EduVidQA
+  - id: takeaways
+    label: Takeaways
+  - id: materials
+    label: Materials
+---
+
+<section id="summary" class="doc-section">
+  <h2>Summary</h2>
+  <p>Multimodal LLMs can now look at images or videos and produce free-form explanations. Once we move from generic benchmarks to <strong>specialized domains</strong>, though, the real question shifts from raw capability to <strong>readiness for the real world</strong>, where answers must be grounded, complete and understandable. Standard automatic metrics struggle to measure these properties, and they are the first to break when the visual setting is complex and the answer is long-form.</p>
+  <p>This thesis asks what <em>human-centered benchmarking</em> should actually mean. It answers with a definition based on construct validity and with <strong>two new long-form multimodal QA benchmarks</strong>, one in healthcare and one in education. Each comes with evaluation methods designed around the people the system is meant to serve.</p>
+
+  <div class="stats">
+    <div class="stat"><span class="stat__n">2</span><span class="stat__l">benchmarks, in healthcare and education</span></div>
+    <div class="stat"><span class="stat__n">4,355</span><span class="stat__l">expert-annotated QA pairs over hospital scenes (ERVQA)</span></div>
+    <div class="stat"><span class="stat__n">5,252</span><span class="stat__l">QA pairs from 296 lecture videos (EduVidQA)</span></div>
+    <div class="stat"><span class="stat__n">8</span><span class="stat__l">error types in an expert-built clinical taxonomy</span></div>
+  </div>
+</section>
+
+<section id="framework" class="doc-section">
+  <h2>Framework: construct validity for human-centered benchmarking</h2>
+  <p>"Benchmarking" and "evaluation" are used inconsistently across ML, and "human-centered" adds another layer of ambiguity. Two benchmarks with that label may have little in common. The thesis draws on <strong>measurement theory from the social sciences</strong>: a theoretical, unobservable <em>construct</em> (e.g. socioeconomic status) is measured through observable <em>proxies</em> (e.g. education, occupation).</p>
+  <p>I define five components: a <strong>Task</strong> <span class="sym">T</span>, a <strong>Model ability</strong> <span class="sym">A</span> (a latent construct), a <strong>Dataset</strong> <span class="sym">D</span>, an <strong>Evaluation objective</strong> <span class="sym">O</span> (a latent quality dimension) and <strong>Evaluation metrics</strong> <span class="sym">M</span>. <em>Benchmarking</em> uses datasets as proxies for an ability. <em>Evaluation</em> uses metrics as proxies for an objective. Making either one human-centered changes the construct: it becomes more abstract, socially motivated and stakeholder-defined, so the proxies have to change too.</p>
+
+  <figure class="fig">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 760 420" role="img" aria-labelledby="tf1t tf1d">
+        <title id="tf1t">General versus human-centered benchmarking and evaluation</title>
+        <desc id="tf1d">Four panels. Benchmarking, general: OK-VQA and CLEVR are dataset proxies for the ability Visual Reasoning. Benchmarking, human-centered: MedVQA and VQA-RAD are proxies for Visual Assistance in Healthcare. Evaluation, general: BLEU and METEOR are metric proxies for the objective Textual Similarity. Evaluation, human-centered: Factual Consistency and Hallucination Tendency are proxies for Reliability in radiology report generation.</desc>
+        <defs>
+          <marker id="ta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+        </defs>
+        <text x="190" y="22" class="dg-t dg-b" text-anchor="middle">Benchmarking · proxies D → ability A</text>
+        <text x="570" y="22" class="dg-t dg-b" text-anchor="middle">Evaluation · proxies M → objective O</text>
+        <text x="8" y="120" class="dg-t dg-xs dg-m" transform="rotate(-90 8 120)" text-anchor="middle">GENERAL</text>
+        <text x="8" y="318" class="dg-t dg-xs dg-acc" transform="rotate(-90 8 318)" text-anchor="middle">HUMAN-CENTERED</text>
+        <line x1="20" y1="218" x2="752" y2="218" class="dg-div"/>
+        <line x1="380" y1="34" x2="380" y2="410" class="dg-div"/>
+
+        <!-- Benchmarking general -->
+        <rect x="24" y="44" width="140" height="150" rx="12" class="dg-alt"/>
+        <rect x="38" y="62" width="112" height="36" rx="8" class="dg-node"/><text x="94" y="85" class="dg-t dg-s" text-anchor="middle">OK-VQA</text>
+        <rect x="38" y="140" width="112" height="36" rx="8" class="dg-node"/><text x="94" y="163" class="dg-t dg-s" text-anchor="middle">CLEVR</text>
+        <path d="M150,80 L226,116" class="dg-edge" marker-end="url(#ta)"/><path d="M150,158 L226,122" class="dg-edge" marker-end="url(#ta)"/>
+        <text x="298" y="66" class="dg-t dg-xs dg-m" text-anchor="middle">task: VQA (T)</text>
+        <rect x="230" y="74" width="136" height="90" rx="12" class="dg-node dg-plain"/>
+        <text x="298" y="114" class="dg-t dg-s dg-b" text-anchor="middle">Visual</text>
+        <text x="298" y="134" class="dg-t dg-s dg-b" text-anchor="middle">Reasoning (A)</text>
+
+        <!-- Benchmarking human-centered -->
+        <rect x="24" y="240" width="140" height="150" rx="12" class="dg-alt dg-hl"/>
+        <rect x="38" y="258" width="112" height="36" rx="8" class="dg-node"/><text x="94" y="281" class="dg-t dg-s" text-anchor="middle">MedVQA</text>
+        <rect x="38" y="336" width="112" height="36" rx="8" class="dg-node"/><text x="94" y="359" class="dg-t dg-s" text-anchor="middle">VQA-RAD</text>
+        <path d="M150,276 L226,312" class="dg-edge" marker-end="url(#ta)"/><path d="M150,354 L226,318" class="dg-edge" marker-end="url(#ta)"/>
+        <text x="298" y="254" class="dg-t dg-xs dg-m" text-anchor="middle">task: VQA (T)</text>
+        <rect x="230" y="262" width="136" height="110" rx="12" class="dg-construct"/>
+        <text x="298" y="300" class="dg-t dg-s dg-b" text-anchor="middle">Visual Assistance</text>
+        <text x="298" y="320" class="dg-t dg-s dg-b" text-anchor="middle">Ability in</text>
+        <text x="298" y="340" class="dg-t dg-s dg-b" text-anchor="middle">Healthcare (A)</text>
+
+        <!-- Evaluation general -->
+        <rect x="400" y="44" width="150" height="150" rx="12" class="dg-alt"/>
+        <rect x="414" y="62" width="122" height="36" rx="8" class="dg-node"/><text x="475" y="85" class="dg-t dg-s" text-anchor="middle">BLEU</text>
+        <rect x="414" y="140" width="122" height="36" rx="8" class="dg-node"/><text x="475" y="163" class="dg-t dg-s" text-anchor="middle">METEOR</text>
+        <path d="M536,80 L608,116" class="dg-edge" marker-end="url(#ta)"/><path d="M536,158 L608,122" class="dg-edge" marker-end="url(#ta)"/>
+        <text x="680" y="66" class="dg-t dg-xs dg-m" text-anchor="middle">for: text interaction (A)</text>
+        <rect x="612" y="74" width="136" height="90" rx="12" class="dg-node dg-plain"/>
+        <text x="680" y="114" class="dg-t dg-s dg-b" text-anchor="middle">Textual</text>
+        <text x="680" y="134" class="dg-t dg-s dg-b" text-anchor="middle">Similarity (O)</text>
+
+        <!-- Evaluation human-centered -->
+        <rect x="400" y="240" width="150" height="150" rx="12" class="dg-alt dg-hl"/>
+        <rect x="414" y="256" width="122" height="44" rx="8" class="dg-node"/><text x="475" y="274" class="dg-t dg-xs" text-anchor="middle">Factual</text><text x="475" y="290" class="dg-t dg-xs" text-anchor="middle">Consistency</text>
+        <rect x="414" y="332" width="122" height="44" rx="8" class="dg-node"/><text x="475" y="350" class="dg-t dg-xs" text-anchor="middle">Hallucination</text><text x="475" y="366" class="dg-t dg-xs" text-anchor="middle">Tendency</text>
+        <path d="M536,278 L608,312" class="dg-edge" marker-end="url(#ta)"/><path d="M536,354 L608,318" class="dg-edge" marker-end="url(#ta)"/>
+        <text x="680" y="254" class="dg-t dg-xs dg-m" text-anchor="middle">for: radiology reports (A)</text>
+        <rect x="612" y="262" width="136" height="110" rx="12" class="dg-construct"/>
+        <text x="680" y="312" class="dg-t dg-s dg-b" text-anchor="middle">Reliability</text>
+        <text x="680" y="332" class="dg-t dg-s dg-b" text-anchor="middle">(O)</text>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 1.</span> General (top) and human-centered (bottom) benchmarking and evaluation, framed as construct validity. In the human-centered rows (highlighted), the construct becomes stakeholder-defined, so the proxies must be redesigned to match. Redrawn from Figures 1.2 and 1.3 of the thesis.</figcaption>
+  </figure>
+
+  <p>The thesis targets five recurring problems with human-centered benchmarks:</p>
+  <ul class="issue-list">
+    <li><strong>Datasets are dated and simplistic.</strong> They saturate quickly but don't reflect real-world complexity.</li>
+    <li><strong>Tasks don't reflect real settings.</strong> Multiple-choice formats assume answer options a clinician or student would never be given.</li>
+    <li><strong>Metrics are hard to define and operationalize</strong> for abstract, user-facing objectives.</li>
+    <li><strong>Existing metrics misrepresent objectives.</strong> Lexical overlap penalizes paraphrase and ignores factuality.</li>
+    <li><strong>Objectives aren't grounded in social utility.</strong> They are inherited from generic NLP tasks without checking them against real users.</li>
+  </ul>
+</section>
+
+<section id="questions" class="doc-section">
+  <h2>Research questions</h2>
+  <div class="rq-grid">
+    <div class="rq">
+      <span class="rq__num">RQ1</span>
+      <p class="rq__q">How can we design human-centered benchmarks for specialized-domain, long-form multimodal QA that reflect real-world complexity and capture stakeholder-relevant notions of answer quality?</p>
+    </div>
+    <div class="rq">
+      <span class="rq__num">RQ2</span>
+      <p class="rq__q">What evaluation protocols most reliably identify failure modes and predict real user utility for long-form multimodal QA in healthcare and education?</p>
+    </div>
+  </div>
+  <div class="map">
+    <div class="map__row map__row--head"><span></span><span>Healthcare · ERVQA</span><span>Education · EduVidQA</span></div>
+    <div class="map__row"><span class="map__k">Stakeholders</span><span>Medical experts</span><span>Students</span></div>
+    <div class="map__row"><span class="map__k">Ability (A)</span><span>Clinical safety</span><span>Pedagogical effectiveness</span></div>
+    <div class="map__row"><span class="map__k">Dataset (D)</span><span>Expert-annotated hospital VQA</span><span>Real and synthetic lecture-video QA</span></div>
+    <div class="map__row"><span class="map__k">Objectives (O)</span><span>Clinical errors, via an expert taxonomy</span><span>Student preferences, via human studies</span></div>
+    <div class="map__row"><span class="map__k">Metrics (M)</span><span>Entailment Score, CLIPScore Confidence, learned error classifiers</span><span>Faithfulness &amp; Coverage, calibrated LLM-as-judge rubrics</span></div>
+  </div>
+</section>
+
+<section id="ervqa" class="doc-section">
+  <p class="doc-eyebrow">Part I · Healthcare · Chapter 3</p>
+  <h2>ERVQA: are vision-language models ready for hospital environments?</h2>
+  <p>A global shortage of healthcare workers, made worse by COVID-19, has created demand for smart assistants that can monitor clinical scenes and alert staff. Medical VQA research has focused on radiology and pathology images with short answers. Real emergency-room and ward scenes, which call for long, careful, free-form answers, have been largely missing. ERVQA fills that gap to answer a concrete question: <em>can a model answer reliably enough to be useful in practice?</em></p>
+
+  <div class="example">
+    <span class="example__tag">Example from ERVQA</span>
+    <p class="example__q"><strong>Q:</strong> Is the position of the patient's head correct?</p>
+    <p class="example__a"><strong>A:</strong> Yes, the position of the patient's head (tilted slightly backwards) is appropriate for collecting nasopharyngeal swabs.</p>
+  </div>
+
+  <h3>Building the dataset</h3>
+  <ol class="flow">
+    <li class="flow__step"><span class="flow__n">1</span><span class="flow__t">Image curation</span><span class="flow__d">20 search phrases; public, watermark-free, real-world scenes with patients, staff or medical apparatus</span><span class="flow__v">367 images</span></li>
+    <li class="flow__step"><span class="flow__n">2</span><span class="flow__t">Expert QA annotation</span><span class="flow__d">Medical experts write visually grounded questions that need medical knowledge (325), plus GPT-4V drafts that experts verify and correct (772)</span><span class="flow__v">1,097 QA pairs</span></li>
+    <li class="flow__step"><span class="flow__n">3</span><span class="flow__t">Paraphrase augmentation</span><span class="flow__d">Four LLM paraphrases per question, each checked by experts to preserve meaning and answer</span><span class="flow__v">4,355 QA pairs</span></li>
+    <li class="flow__step"><span class="flow__n">4</span><span class="flow__t">Quality check</span><span class="flow__d">Two experts rate Relevance, Clarity and Harmlessness; common disagreement ≤ 1.5% on every attribute</span><span class="flow__v">Expert-validated</span></li>
+  </ol>
+  <p class="note-inline">Privacy by design: ERVQA uses only publicly available, web-sourced images and no patient data from hospitals or medical records.</p>
+
+  <h3>An expert-built error taxonomy</h3>
+  <p>With three medical experts, I defined eight error types for generated answers, split into <em>reasoning</em> and <em>non-reasoning</em> failures. Experts annotated 372 answers from GPT-4V and Gemini Pro Vision (Cohen's κ = 0.78).</p>
+  <div class="taxonomy">
+    <div class="taxonomy__group">
+      <span class="taxonomy__label">Reasoning</span>
+      <span class="tax tax--top"><b>T1</b> Reasoning</span>
+    </div>
+    <div class="taxonomy__group">
+      <span class="taxonomy__label">Non-reasoning</span>
+      <span class="tax"><b>T2</b> Medical factual</span>
+      <span class="tax tax--top"><b>T3</b> Perception</span>
+      <span class="tax"><b>T4</b> Coherence / consistency</span>
+      <span class="tax tax--top"><b>T5</b> Specificity / relevance</span>
+      <span class="tax"><b>T6</b> Linguistic</span>
+      <span class="tax"><b>T7</b> Hallucination</span>
+      <span class="tax"><b>T8</b> Uncertainty / confidence</span>
+    </div>
+  </div>
+  <p class="note-inline">Highlighted types (T1, T3, T5) each occurred in more than 26% of generations.</p>
+
+  <figure class="fig">
+    <div class="fig__canvas fig__canvas--pad">
+      {% include thesis/heatmap.html %}
+    </div>
+    <figcaption><span class="fig__n">Figure 2.</span> Error co-occurrence (%): co-occurrences of a pair ÷ the count of the rarer error. Reasoning errors co-occur with coherence (95%), medical-factual (91%), perception (90%) and hallucination (87%) errors. Hover a cell for the exact value. Data from Figure 3.3 of the thesis.</figcaption>
+  </figure>
+
+  <h3>Evaluation beyond overlap</h3>
+  <p>To capture what lexical metrics miss, I adapted two metrics:</p>
+  <div class="metric-cards">
+    <div class="metric-card">
+      <span class="metric-card__name">Entailment Score</span>
+      <span class="metric-card__eq">ES = p(entailment | ref, gen)</span>
+      <span class="metric-card__d">Is the reference answer's meaning entailed by the generation? Computed with an NLI cross-encoder.</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-card__name">CLIPScore Confidence</span>
+      <span class="metric-card__eq">CLIP-C = S(img, gen) / [S(img, ref) + S(img, gen)]</span>
+      <span class="metric-card__d">How well the generated answer aligns with the image, relative to the reference.</span>
+    </div>
+  </div>
+  <p>To scale error analysis, I trained BLIP-2-based classifiers for each error type (macro-F1 97.81 in 5-fold cross-validation). They produce silver-label error rates across models and settings.</p>
+
+  <h3>Key findings</h3>
+  <ul class="findings">
+    <li><strong>Errors compound.</strong> Low-level perception and factual errors cascade into reasoning failures. Models "double down" with confidence instead of expressing uncertainty.</li>
+    <li><strong>Better scores ≠ fewer errors.</strong> In-context examples improved Gemini's lexical and semantic metrics, but its error rates across 0-, 1- and 3-shot settings were almost identical.</li>
+    <li><strong>Scale isn't safety.</strong> Error rates did not fall with model size. The choice of decoder mattered more.</li>
+    <li><strong>Not yet ready.</strong> Even the best model (Gemini) showed a ~33% average error rate across error classes, which is too high for emergency-room decision support.</li>
+  </ul>
+  <p class="paper-links"><a class="tag" href="https://arxiv.org/abs/2410.06420">Paper</a> <a class="tag" href="https://sourjyadip.github.io/ervqa-page/">Project page</a> <a class="tag" href="https://github.com/sourjyadip/ervqa-data">Data &amp; code</a></p>
+</section>
+
+<section id="eduvidqa" class="doc-section">
+  <p class="doc-eyebrow">Part II · Education · Chapter 4</p>
+  <h2>EduVidQA: long-form answers to student questions on lecture videos</h2>
+  <p>Students learn best when they engage actively, and asking questions is one of the most direct forms of engagement. Online lectures are passive. In a survey of <strong>52 university students</strong>, most said they want to ask questions while watching, but few post them in comment sections, because of the platform environment and the low chance of an expert reply. EduVidQA defines a new task: <strong>generating pedagogically useful, long-form answers to timestamped student questions</strong>, grounded in the lecture.</p>
+
+  <div class="example">
+    <span class="example__tag">Example from EduVidQA · 17:11 in an algorithms lecture</span>
+    <p class="example__q"><strong>Q:</strong> Can you explain why T2 is considered better in terms of growth, although it has a larger coefficient in front of the n² term compared to the coefficient of the n³ term in T1?</p>
+    <p class="example__a"><strong>A:</strong> As n grows large, coefficients and lower-order terms become irrelevant, so T1's n³ growth outstrips T2's n², even if T2 has higher constants. T2's slower growth rate is ultimately more efficient for large inputs …</p>
+  </div>
+
+  <h3>Two complementary data tracks</h3>
+  <div class="tracks">
+    <div class="track">
+      <span class="track__title">Real-world test set</span>
+      <ol class="funnel">
+        <li><span class="funnel__v">145</span><span class="funnel__d">lecture videos from 7 CS/AI courses (Stanford, MIT, Harvard, CMU, NYU)</span></li>
+        <li><span class="funnel__v">1,440</span><span class="funnel__d">YouTube comments containing questions</span></li>
+        <li><span class="funnel__v">702</span><span class="funnel__d">knowledge-seeking questions after manual filtering</span></li>
+        <li class="funnel__final"><span class="funnel__v">270</span><span class="funnel__d">timestamped questions, answered or corrected by domain experts <em>without LLMs</em></span></li>
+      </ol>
+    </div>
+    <div class="track">
+      <span class="track__title">Synthetic training set</span>
+      <ol class="funnel">
+        <li><span class="funnel__v">199</span><span class="funnel__d">NPTEL videos with expert-curated transcripts and key frames</span></li>
+        <li><span class="funnel__v">7,530</span><span class="funnel__d">QA pairs generated with GPT-4o</span></li>
+        <li><span class="funnel__v">6,546</span><span class="funnel__d">after removing questions without timestamps</span></li>
+        <li class="funnel__final"><span class="funnel__v">4,982</span><span class="funnel__d">after <em>adversarial refinement</em>: drop questions answerable without the video (entailment threshold 0.65); Bloom's-taxonomy difficulty tags</span></li>
+      </ol>
+    </div>
+  </div>
+  <p class="note-inline">Quality check on 500 synthetic pairs: the two annotators agreed on answer soundness for every sample, and rated question naturalness valid for 97–98% of samples.</p>
+
+  <h3>Asking students what a good answer is</h3>
+  <div class="studies">
+    <div class="study">
+      <span class="study__n">Study 1 · 10 students</span>
+      <span class="study__t">Which qualities drive preference?</span>
+      <span class="study__d"><strong>Clarity</strong> drove over 60% of choices. Encouraging critical thinking (ECT) and use of pedagogical techniques (UPT) mattered depending on the question. Depth and conciseness split by expertise: undergraduates favored depth, graduates favored conciseness.</span>
+    </div>
+    <div class="study">
+      <span class="study__n">Study 2 · 20 students</span>
+      <span class="study__t">Does enhancing answers help?</span>
+      <span class="study__d">For <strong>medium-difficulty</strong> questions, 65% preferred the clarity-enhanced answer. Based on this, I enhanced clarity only for medium questions in the synthetic set.</span>
+    </div>
+  </div>
+
+  <h3>Metrics that track human judgment</h3>
+  <p><strong>Faithfulness</strong> and <strong>Coverage</strong> split the reference and generated answers into atomic facts with GPT-4o and match them by sentence similarity (λ = 0.7). They act as fact-level precision and recall, and the threshold is an interpretable control. Against human ratings on 150 samples, they correlate far better than lexical metrics, direct GPT-4 scoring or FactQA.</p>
+  <figure class="fig">
+    <div class="fig__canvas fig__canvas--pad">
+      <p class="chart-title">Spearman ρ with human faithfulness ratings</p>
+      {% include thesis/metric-corr.html %}
+    </div>
+    <figcaption><span class="fig__n">Figure 3.</span> Correlation of each metric with human faithfulness judgments. The two highlighted bars are the proposed metrics. Data from Tables 4.4 and 4.5 of the thesis.</figcaption>
+  </figure>
+  <p>For pedagogical quality, I wrote <strong>objective Likert rubrics</strong> for Clarity, ECT and UPT. Two student annotators agreed strongly (Spearman ρ 0.70 / 0.72 / 0.78), whereas a more subjective version of the rubric managed only ~0.37–0.39. I then calibrated GPT-4o as a judge against those annotations (Cohen's κ 0.72 / 0.46 / 0.85). The takeaway: <em>the wording of an LLM-as-judge rubric decides whether it tracks humans.</em></p>
+
+  <h3>Key findings</h3>
+  <ul class="findings">
+    <li><strong>The task is hard.</strong> Zero-shot performance on real student questions is poor, even for GPT-4o and Gemini 1.5.</li>
+    <li><strong>Synthetic data works.</strong> Fine-tuning on the synthetic set improved both of the best open models on every text-based metric. Smaller 7–13B models became competitive with much larger closed models.</li>
+    <li><strong>Pedagogy improves too.</strong> Fine-tuned mPLUG-Owl3 8B produced the clearest answers on the synthetic set and came closest to reference clarity on real questions. On hard real questions it beat GPT-4o on both FactQA precision and recall.</li>
+    <li><strong>Surface metrics aren't enough.</strong> Models can improve on overlap metrics while still missing key points or pedagogical qualities students care about.</li>
+  </ul>
+  <p class="paper-links"><a class="tag" href="https://aclanthology.org/2025.emnlp-main.1760/">Paper</a> <a class="tag" href="https://arxiv.org/abs/2509.24120">arXiv</a> <a class="tag" href="https://github.com/sourjyadip/eduvidqa-emnlp25">Data &amp; code</a></p>
+</section>
+
+<section id="takeaways" class="doc-section">
+  <h2>Takeaways and future work</h2>
+  <p>Across both domains, benchmarking stops being a leaderboard exercise and becomes a <strong>stakeholder-grounded measurement problem</strong>. The consequences of failure and the preferences of real users decide what gets measured. The evaluation instruments then make success and failure <em>interpretable</em> to the people these systems are meant to serve.</p>
+  <div class="takeaways">
+    <div class="takeaway"><span class="takeaway__k">Stakeholder-grounded data</span><span>Expert-authored clinical questions; student-informed answer qualities.</span></div>
+    <div class="takeaway"><span class="takeaway__k">Human-aligned metrics</span><span>Entailment and image-grounded scores; fact-level Faithfulness and Coverage; LLM judges calibrated against humans.</span></div>
+    <div class="takeaway"><span class="takeaway__k">Diagnostic evaluation</span><span>Error taxonomies and co-occurrence analysis that explain <em>why</em> systems fail, not just how often.</span></div>
+  </div>
+  <h3>Open directions</h3>
+  <ul class="findings">
+    <li><strong>Error-aware modeling:</strong> optimizing directly against clinically relevant error types, for example with test-time scaling where training data is scarce.</li>
+    <li><strong>New modalities and settings:</strong> extending hospital VQA to video, closer to how monitoring systems would actually be deployed.</li>
+    <li><strong>Diverse stakeholders:</strong> involving experts from different healthcare cultures beyond India, and students across demographics and disciplines.</li>
+    <li><strong>Scalable, robust evaluation:</strong> aligning LLM-as-judge metrics with stakeholders in new settings without making them brittle.</li>
+  </ul>
+  <p>These directions lead into my current <a href="{{ '/research/' | relative_url }}">research agenda</a> on pluralistic and context-aware evaluation.</p>
+</section>
+
+<section id="materials" class="doc-section">
+  <h2>Materials</h2>
+  <div class="materials">
+    <div class="material">
+      <span class="material__k">Publications from this thesis</span>
+      <ul class="plain">
+        <li><strong>ERVQA</strong>: A Dataset to Benchmark the Readiness of Large Vision Language Models in Hospital Environments. <em>EMNLP 2024</em>. <a href="https://arxiv.org/abs/2410.06420">Paper</a> · <a href="https://github.com/sourjyadip/ervqa-data">Code</a></li>
+        <li><strong>EduVidQA</strong>: Generating and Evaluating Long-form Answers to Student Questions based on Lecture Videos. <em>EMNLP 2025</em>. <a href="https://aclanthology.org/2025.emnlp-main.1760/">Paper</a> · <a href="https://github.com/sourjyadip/eduvidqa-emnlp25">Code</a></li>
+      </ul>
+    </div>
+    <div class="material">
+      <span class="material__k">Thesis structure</span>
+      <ol class="chapters">
+        <li><span>Introduction: construct validity, motivation, research questions</span></li>
+        <li><span>Prior work: medical VQA, educational video QA, long-text evaluation, synthetic data</span></li>
+        <li><span>Benchmarking VQA in hospital environments (ERVQA)</span></li>
+        <li><span>Long-form answers to student questions on lecture videos (EduVidQA)</span></li>
+        <li><span>Conclusion and future work</span></li>
+      </ol>
+    </div>
+    {%- if page.thesis_pdf %}
+    <div class="material">
+      <span class="material__k">Full text</span>
+      <p><a class="tag" href="{{ page.thesis_pdf | relative_url }}">Download thesis (PDF)</a></p>
+    </div>
+    {%- endif %}
+  </div>
+</section>

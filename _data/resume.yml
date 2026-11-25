@@ -8,7 +8,7 @@ experience:
     dates: "May 2026 – Present"
     people: "Mentors: Dr. Sunayana Sitaram, Dr. Mohit Jain"
     points:
-      - "Healthcare-specific multi-agent social simulations, and benchmarking and evaluation of synthetic data."
+      - "Generating and evaluating synthetic clinical conversations in Indian contexts, using healthcare-specific multi-agent social simulations. Formalizing a game-design-theory framework for clinical dialogue generation and evaluation."
       - "Sponsored by the Koita Center for Digital Health, Ashoka University (KCDH-A), as a Research Data Officer."
   - role: "Project Officer (Research)"
     org: "SRIC, IIT Kharagpur"

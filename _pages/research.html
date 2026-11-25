@@ -1,0 +1,328 @@
+---
+layout: doc
+permalink: /research/
+title: "Research Statement · Sourjyadip Ray"
+heading: "Research statement"
+kicker: "Research agenda"
+subtitle: "Human-centered benchmarking and evaluation of AI for pluralistic, changing social contexts."
+description: "An overview of Sourjyadip Ray's research agenda: formal, human-centered methods for benchmarking and evaluating AI when stakeholder values are pluralistic and social contexts shift."
+toc:
+  - id: overview
+    label: Overview
+  - id: lens
+    label: Construct validity
+  - id: path
+    label: How I got here
+  - id: pluralistic
+    label: "Direction 1"
+  - id: drift
+    label: "Direction 2"
+  - id: toolkit
+    label: Approach
+  - id: references
+    label: References
+---
+
+<section id="overview" class="doc-section">
+  <h2>Overview</h2>
+  <p>For the past five years I have built benchmarks and evaluation methods for AI models in social NLP applications, working closely with <strong>doctors</strong>, <strong>students</strong> and other domain experts across healthcare and education. Those collaborations kept exposing the same gap: technologists and real-world stakeholders often disagree about what a "good" output is, and AI built from a single viewpoint carries real risks once it is deployed.</p>
+  <p>That gap shapes my research philosophy. I want to make AI models <em>inclusive and safe for widespread societal adoption across many perspectives and domains</em>. During a PhD, I want to pursue that by developing <strong>rigorous theoretical and practical approaches for robust AI benchmarking and evaluation</strong> in multi-perspective and changing social contexts.</p>
+
+  <div class="rq-grid">
+    <div class="rq">
+      <span class="rq__num">Q1</span>
+      <p class="rq__q">How can we formally represent and evaluate constructs that accommodate <em>pluralistic, non-convergent</em> stakeholder values?</p>
+      <a class="rq__link" href="#pluralistic">Direction 1 &darr;</a>
+    </div>
+    <div class="rq">
+      <span class="rq__num">Q2</span>
+      <p class="rq__q">How can we create synthetic benchmarks that model <em>social context drift</em>, and provide formal guarantees for evaluation metrics as contexts change?</p>
+      <a class="rq__link" href="#drift">Direction 2 &darr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="lens" class="doc-section">
+  <h2>The lens: construct validity</h2>
+  <p>While writing my Master's thesis, I borrowed <strong>construct validity</strong> from the social sciences to describe my work in one general framework, drawing on Jacobs &amp; Wallach [1], Wallach et al. [2] and Bean et al. [3]. Construct validity asks how well an <em>unobservable construct</em> is captured by <em>observable proxies</em>. In human-centered benchmarking, the proxies are our datasets and evaluation metrics. The constructs are defined by social values and norms.</p>
+
+  <figure class="fig">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 720 250" role="img" aria-labelledby="f1t f1d">
+        <title id="f1t">Construct validity applied to AI evaluation</title>
+        <desc id="f1d">Benchmark datasets and evaluation metrics are observable proxies that approximate an unobservable construct: the social values and norms held by stakeholders.</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+        </defs>
+        <rect x="20" y="20" width="250" height="210" rx="14" class="dg-alt"/>
+        <text x="42" y="54" class="dg-t dg-b">Observable proxies</text>
+        <rect x="42" y="80" width="206" height="46" rx="10" class="dg-node"/>
+        <text x="145" y="108" class="dg-t" text-anchor="middle">Benchmark datasets</text>
+        <rect x="42" y="152" width="206" height="46" rx="10" class="dg-node"/>
+        <text x="145" y="180" class="dg-t" text-anchor="middle">Evaluation metrics</text>
+
+        <path d="M248,103 C330,103 360,125 446,125" class="dg-edge" marker-end="url(#arr)"/>
+        <path d="M248,175 C330,175 360,125 446,125" class="dg-edge" marker-end="url(#arr)"/>
+        <text x="350" y="92" class="dg-t dg-s dg-m" text-anchor="middle">approximate</text>
+
+        <rect x="450" y="20" width="250" height="210" rx="14" class="dg-construct"/>
+        <text x="575" y="54" class="dg-t dg-b" text-anchor="middle">Unobservable construct</text>
+        <text x="575" y="116" class="dg-t dg-serif dg-l" text-anchor="middle">Social values &amp; norms</text>
+        <text x="575" y="142" class="dg-t dg-m" text-anchor="middle">held by stakeholders</text>
+        <text x="575" y="198" class="dg-t dg-s dg-m" text-anchor="middle">clinicians · students · communities</text>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 1.</span> A benchmark is an observable proxy for a construct that only stakeholders can define. A score is only as valid as that link.</figcaption>
+  </figure>
+
+  <p>Most social NLP benchmarks and evaluation frameworks currently measure a <strong>singular, fixed construct</strong>, usually aggregated or majority-driven. In practice, social constructs are often <strong>justifiably pluralistic and contextually dynamic</strong>. As AI models become part of everyday life, benchmarks and evaluation should account for this, and we need formal frameworks and methods for doing so [4, 5].</p>
+
+  <figure class="fig">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 720 250" role="img" aria-labelledby="f2t f2d">
+        <title id="f2t">Majority-driven versus pluralistic constructs</title>
+        <desc id="f2d">Left: judgments from three stakeholder groups are collapsed into a single majority label and disagreement is discarded as noise. Right: each group keeps its own construct and the model is measured against each.</desc>
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+        </defs>
+        <text x="180" y="30" class="dg-t dg-b" text-anchor="middle">Today: one fixed construct</text>
+        <g>
+          <circle cx="70"  cy="76" r="10" class="g1"/><circle cx="110" cy="76" r="10" class="g2"/>
+          <circle cx="150" cy="76" r="10" class="g1"/><circle cx="210" cy="76" r="10" class="g3"/>
+          <circle cx="250" cy="76" r="10" class="g2"/><circle cx="290" cy="76" r="10" class="g1"/>
+        </g>
+        <g class="dg-edge">
+          <path d="M70,88 L160,148"/><path d="M110,88 L165,148"/><path d="M150,88 L172,148"/>
+          <path d="M210,88 L188,148"/><path d="M250,88 L195,148"/><path d="M290,88 L200,148"/>
+        </g>
+        <rect x="110" y="150" width="140" height="42" rx="10" class="dg-node"/>
+        <text x="180" y="176" class="dg-t" text-anchor="middle">Majority label</text>
+        <text x="180" y="228" class="dg-t dg-s dg-m" text-anchor="middle">Disagreement discarded as noise</text>
+
+        <line x1="360" y1="20" x2="360" y2="232" class="dg-div"/>
+
+        <text x="540" y="30" class="dg-t dg-b" text-anchor="middle">Needed: pluralistic constructs</text>
+        <g>
+          <circle cx="415" cy="76" r="10" class="g1"/><circle cx="445" cy="76" r="10" class="g1"/>
+          <circle cx="525" cy="76" r="10" class="g2"/><circle cx="555" cy="76" r="10" class="g2"/>
+          <circle cx="635" cy="76" r="10" class="g3"/><circle cx="665" cy="76" r="10" class="g3"/>
+        </g>
+        <g class="dg-edge">
+          <path d="M415,88 L426,148"/><path d="M445,88 L434,148"/>
+          <path d="M525,88 L536,148"/><path d="M555,88 L544,148"/>
+          <path d="M635,88 L646,148"/><path d="M665,88 L654,148"/>
+        </g>
+        <rect x="382" y="150" width="96" height="42" rx="10" class="dg-node g1s"/>
+        <text x="430" y="176" class="dg-t dg-s" text-anchor="middle">Construct A</text>
+        <rect x="492" y="150" width="96" height="42" rx="10" class="dg-node g2s"/>
+        <text x="540" y="176" class="dg-t dg-s" text-anchor="middle">Construct B</text>
+        <rect x="602" y="150" width="96" height="42" rx="10" class="dg-node g3s"/>
+        <text x="650" y="176" class="dg-t dg-s" text-anchor="middle">Construct C</text>
+        <text x="540" y="228" class="dg-t dg-s dg-m" text-anchor="middle">Each perspective is measured on its own terms</text>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 2.</span> Dots are individual judgments, colored by stakeholder group. Aggregating them into one label hides perspectives that are legitimately different, which often means under-represented ones.</figcaption>
+  </figure>
+</section>
+
+<section id="path" class="doc-section">
+  <h2>How I got here</h2>
+  <p>Each project taught me one piece of the agenda above.</p>
+  <ol class="timeline">
+    <li>
+      <span class="timeline__when">2021–22 · Research Assistant, IIT Kharagpur</span>
+      <span class="timeline__what"><strong>Healthcare queries in Indic languages</strong> <span class="venue-chip">EACL 2023 Findings</span></span>
+      <span class="timeline__lesson">My foundations: curating and annotating data, designing experiments, and benchmarking transformer models. My systematic experiments produced the empirical results at the core of the paper.</span>
+    </li>
+    <li>
+      <span class="timeline__when">2022–24 · MS (by Research), IIT Kharagpur</span>
+      <span class="timeline__what"><strong>ERVQA</strong>: long-form VQA in emergency rooms <span class="venue-chip">EMNLP 2024</span></span>
+      <span class="timeline__lesson">I spent over a year eliciting domain knowledge from doctors and turning their expert reasoning into a hierarchical error taxonomy.</span>
+    </li>
+    <li>
+      <span class="timeline__when">2024–25 · MS (by Research), IIT Kharagpur</span>
+      <span class="timeline__what"><strong>EduVidQA</strong>: long-form answers to student questions on lecture videos <span class="venue-chip">EMNLP 2025</span></span>
+      <span class="timeline__lesson">I designed and ran human studies with students, then calibrated LLM-as-judge rubrics against them. The construct worth measuring belongs to the stakeholders, and recovering it takes careful human-centered methods.</span>
+    </li>
+    <li>
+      <span class="timeline__when">2026– · Microsoft Research India</span>
+      <span class="timeline__what"><strong>Synthetic clinical conversations</strong> in Indian contexts</span>
+      <span class="timeline__lesson">There is no gold-standard reference data for India's many regional, linguistic, clinical and cultural contexts, and synthetic dialogue generation lacks a theoretical foundation. I am formalizing a framework for generating and evaluating clinical dialogue based on game design theory [9]. This work led directly to my second question.</span>
+    </li>
+  </ol>
+</section>
+
+<section id="pluralistic" class="doc-section">
+  <p class="doc-eyebrow">Direction 1 · Q1</p>
+  <h2>Formalizing benchmarking and evaluation for pluralistic social contexts</h2>
+  <p>Standard benchmarking frameworks assume a convergent ground truth and treat annotator disagreement as noise, which can push under-represented viewpoints aside. Designing benchmarks and evaluation for <em>pluralistic</em> constructs is complex, underexplored, and an active challenge for the NLP community. Recent work that applies game theory [10] and psychometrics [11] to related NLP problems suggests that these neighboring perspectives can help formalize the problem.</p>
+
+  <h3>Approach A: stakeholders as players in a contextual game</h3>
+  <p>Inspired by work on contextual games for multi-agent learning [12], I would model communities or stakeholder groups as <strong>players whose preferences depend on socially contextual rules</strong>. A model is then evaluated not by agreement with one label but by its <strong>contextual regret</strong> with respect to each group.</p>
+
+  <figure class="fig">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 720 300" role="img" aria-labelledby="f3t f3d">
+        <title id="f3t">Evaluation as a contextual game</title>
+        <desc id="f3d">Three stakeholder groups, each with its own context, judge the same model output with their own utility function. Each group yields its own contextual regret, giving a profile of regrets instead of a single score.</desc>
+        <defs>
+          <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+        </defs>
+        <rect x="270" y="112" width="180" height="70" rx="14" class="dg-construct"/>
+        <text x="360" y="142" class="dg-t dg-b" text-anchor="middle">Model output</text>
+        <text x="360" y="164" class="dg-t dg-s dg-m" text-anchor="middle">a = f(x, c)</text>
+
+        <rect x="20" y="24" width="190" height="78" rx="12" class="dg-node g1s"/>
+        <circle cx="42" cy="48" r="8" class="g1"/>
+        <text x="58" y="53" class="dg-t dg-b">Group 1</text>
+        <text x="40" y="78" class="dg-t dg-s dg-m">context c₁ · utility u₁</text>
+
+        <rect x="510" y="24" width="190" height="78" rx="12" class="dg-node g2s"/>
+        <circle cx="532" cy="48" r="8" class="g2"/>
+        <text x="548" y="53" class="dg-t dg-b">Group 2</text>
+        <text x="530" y="78" class="dg-t dg-s dg-m">context c₂ · utility u₂</text>
+
+        <rect x="265" y="210" width="190" height="78" rx="12" class="dg-node g3s"/>
+        <circle cx="287" cy="234" r="8" class="g3"/>
+        <text x="303" y="239" class="dg-t dg-b">Group 3</text>
+        <text x="285" y="264" class="dg-t dg-s dg-m">context c₃ · utility u₃</text>
+
+        <path d="M268,140 C230,140 200,120 190,104" class="dg-edge" marker-end="url(#arr3)"/>
+        <path d="M452,140 C490,140 520,120 530,104" class="dg-edge" marker-end="url(#arr3)"/>
+        <path d="M360,184 L360,207" class="dg-edge" marker-end="url(#arr3)"/>
+
+        <text x="104" y="136" class="dg-t dg-s dg-acc" text-anchor="middle">regret R₁</text>
+        <text x="616" y="136" class="dg-t dg-s dg-acc" text-anchor="middle">regret R₂</text>
+        <text x="420" y="200" class="dg-t dg-s dg-acc">regret R₃</text>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 3.</span> The same output is judged by several groups, each with its own context and preferences. The result is a <em>profile</em> of regrets (R₁, R₂, R₃) rather than one aggregated number, so trade-offs between groups stay visible.</figcaption>
+  </figure>
+
+  <div class="formula" role="note" aria-label="Illustrative formulation">
+    <span class="formula__label">Illustrative formulation</span>
+    <p class="formula__eq">R<sub>g</sub>(f) = 𝔼<sub>c ∼ 𝒟<sub>g</sub></sub> [ max<sub>a</sub> u<sub>g</sub>(a, c) − u<sub>g</sub>(f(x, c), c) ]</p>
+    <p class="formula__note">For each stakeholder group g, the regret is the expected gap between the best achievable utility in its contexts and the utility of the model's actual output. This is a sketch of the idea, not a finished definition.</p>
+  </div>
+
+  <h3>Approach B: group-specific constructs with item response theory</h3>
+  <p>A more practical route is to <strong>segment data points by how culturally differentiable they are</strong> and to develop a separate evaluation construct for each group, using psychometric tools such as <strong>Item Response Theory</strong> (IRT) [13]. The same item can be easy for one population and hard for another. IRT makes that difference measurable instead of averaging it away.</p>
+
+  <figure class="fig fig--narrow">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 480 240" role="img" aria-labelledby="f4t f4d">
+        <title id="f4t">Item characteristic curves for two stakeholder groups</title>
+        <desc id="f4d">Two S-shaped curves show the probability that a model's response is judged acceptable as model ability increases. Group 2's curve is shifted right, meaning the same item is harder to satisfy for that group.</desc>
+        <line x1="50" y1="190" x2="440" y2="190" class="dg-axis"/>
+        <line x1="50" y1="24" x2="50" y2="190" class="dg-axis"/>
+        <line x1="50" y1="110" x2="440" y2="110" class="dg-grid"/>
+        <text x="245" y="222" class="dg-t dg-s dg-m" text-anchor="middle">model ability θ →</text>
+        <text x="20" y="110" class="dg-t dg-s dg-m" text-anchor="middle" transform="rotate(-90 20 110)">P(acceptable)</text>
+        <path d="M50.0,186.3 L62.7,184.8 L75.3,182.8 L88.0,180.1 L100.7,176.4 L113.3,171.6 L126.0,165.3 L138.7,157.3 L151.3,147.6 L164.0,136.2 L176.7,123.5 L189.3,110.0 L202.0,96.5 L214.7,83.8 L227.3,72.4 L240.0,62.7 L252.7,54.7 L265.3,48.4 L278.0,43.6 L290.7,39.9 L303.3,37.2 L316.0,35.2 L328.7,33.7 L341.3,32.7 L354.0,31.9 L366.7,31.4 L379.3,31.0 L392.0,30.7 L404.7,30.5 L417.3,30.4 L430.0,30.2" class="dg-curve g1l"/>
+        <path d="M50.0,189.8 L62.7,189.8 L75.3,189.6 L88.0,189.5 L100.7,189.3 L113.3,189.0 L126.0,188.6 L138.7,188.1 L151.3,187.3 L164.0,186.3 L176.7,184.8 L189.3,182.8 L202.0,180.1 L214.7,176.4 L227.3,171.6 L240.0,165.3 L252.7,157.3 L265.3,147.6 L278.0,136.2 L290.7,123.5 L303.3,110.0 L316.0,96.5 L328.7,83.8 L341.3,72.4 L354.0,62.7 L366.7,54.7 L379.3,48.4 L392.0,43.6 L404.7,39.9 L417.3,37.2 L430.0,35.2" class="dg-curve g2l"/>
+        <circle cx="189.3" cy="110" r="4.5" class="g1"/>
+        <circle cx="303.3" cy="110" r="4.5" class="g2"/>
+        <text x="150" y="62" class="dg-t dg-s" text-anchor="end">Group 1</text>
+        <text x="330" y="150" class="dg-t dg-s">Group 2</text>
+        <text x="246" y="104" class="dg-t dg-s dg-m" text-anchor="middle">difficulty gap</text>
+        <line x1="194" y1="110" x2="298" y2="110" class="dg-gap"/>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 4.</span> Conceptual item characteristic curves. The same item has a different difficulty for each group, and the shift between the curves is a signal to measure rather than average away.</figcaption>
+  </figure>
+</section>
+
+<section id="drift" class="doc-section">
+  <p class="doc-eyebrow">Direction 2 · Q2</p>
+  <h2>Synthetic benchmarks and evaluation under social context drift</h2>
+  <p>My work on synthetic clinical dialogue introduced me to <strong>multi-agent social simulations</strong> as a <em>playground for modeling and evaluating agents under social context drift</em>. Simulations make agent behavior and environment variables explicit and controllable, and recent work shows they can model realistic social settings [14, 15].</p>
+  <p>The open problem is deciding <strong>which social factors matter enough to model mechanistically</strong> when depicting drift into an unseen environment. There is no established way to estimate those factors when relevant social studies do not exist, or to formally decide which evaluation metrics remain valid there.</p>
+  <p>My proposed approach uses <strong>causal analysis</strong>. I would model the simulation as a <strong>structural causal model</strong> over social factors and construct-related outcomes, and use <strong>causal discovery</strong> on limited real data to identify which factors actually affect evaluation. Context drift then becomes a change in specific causal mechanisms, and <strong>transportability theory</strong> [16] can state the conditions under which metric scores carry over to a new context.</p>
+
+  <figure class="fig">
+    <div class="fig__canvas">
+      <svg viewBox="0 0 720 312" role="img" aria-labelledby="f5t f5d">
+        <title id="f5t">Context drift as a change in causal mechanisms</title>
+        <desc id="f5d">Two structural causal models side by side. In each, social factors S1 to S3 affect agent behaviour B, which drives the construct outcome Y, which the metric M measures. In the target context the mechanism from S2 to B has shifted. Transportability asks whether M computed in the source context remains valid in the target context.</desc>
+        <defs>
+          <marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+          <marker id="arr5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head-acc"/></marker>
+        </defs>
+
+        <rect x="10" y="40" width="320" height="200" rx="14" class="dg-panel"/>
+        <text x="170" y="28" class="dg-t dg-b" text-anchor="middle">Source context (simulated)</text>
+        <g class="dg-edge" marker-end="url(#arr5)">
+          <path d="M72,82 L128,128"/><path d="M72,140 L126,140"/><path d="M72,198 L128,152"/>
+          <path d="M170,140 L202,140"/><path d="M246,140 L278,140"/>
+        </g>
+        <circle cx="52" cy="82" r="20" class="dg-node"/><text x="52" y="87" class="dg-t dg-s" text-anchor="middle">S₁</text>
+        <circle cx="52" cy="140" r="20" class="dg-node"/><text x="52" y="145" class="dg-t dg-s" text-anchor="middle">S₂</text>
+        <circle cx="52" cy="198" r="20" class="dg-node"/><text x="52" y="203" class="dg-t dg-s" text-anchor="middle">S₃</text>
+        <circle cx="148" cy="140" r="22" class="dg-node"/><text x="148" y="145" class="dg-t dg-s" text-anchor="middle">B</text>
+        <circle cx="224" cy="140" r="22" class="dg-node"/><text x="224" y="145" class="dg-t dg-s" text-anchor="middle">Y</text>
+        <circle cx="300" cy="140" r="22" class="dg-construct"/><text x="300" y="145" class="dg-t dg-s" text-anchor="middle">M</text>
+
+        <rect x="390" y="40" width="320" height="200" rx="14" class="dg-panel"/>
+        <text x="550" y="28" class="dg-t dg-b" text-anchor="middle">Target context (unseen)</text>
+        <g class="dg-edge" marker-end="url(#arr5)">
+          <path d="M452,82 L508,128"/><path d="M452,198 L508,152"/>
+          <path d="M550,140 L582,140"/><path d="M626,140 L658,140"/>
+        </g>
+        <path d="M452,140 L506,140" class="dg-edge-acc" marker-end="url(#arr5a)"/>
+        <circle cx="432" cy="82" r="20" class="dg-node"/><text x="432" y="87" class="dg-t dg-s" text-anchor="middle">S₁</text>
+        <circle cx="432" cy="140" r="20" class="dg-node dg-shift"/><text x="432" y="145" class="dg-t dg-s" text-anchor="middle">S₂</text>
+        <circle cx="432" cy="198" r="20" class="dg-node"/><text x="432" y="203" class="dg-t dg-s" text-anchor="middle">S₃</text>
+        <circle cx="528" cy="140" r="22" class="dg-node"/><text x="528" y="145" class="dg-t dg-s" text-anchor="middle">B</text>
+        <circle cx="604" cy="140" r="22" class="dg-node"/><text x="604" y="145" class="dg-t dg-s" text-anchor="middle">Y</text>
+        <circle cx="680" cy="140" r="22" class="dg-construct"/><text x="680" y="145" class="dg-t dg-s" text-anchor="middle">M</text>
+        <text x="480" y="160" class="dg-t dg-xs dg-acc" text-anchor="middle">shifted</text>
+
+        <path d="M300,246 C300,272 680,272 680,246" class="dg-edge-dash" marker-end="url(#arr5)"/>
+        <text x="490" y="300" class="dg-t dg-s dg-m" text-anchor="middle">transportability: does M still measure Y?</text>
+      </svg>
+    </div>
+    <figcaption><span class="fig__n">Figure 5.</span> S = social factors, B = agent behaviour, Y = construct-related outcome, M = evaluation metric. Drift is modeled as a change in a specific mechanism (here S₂ → B), and transportability gives conditions under which M carries over.</figcaption>
+  </figure>
+</section>
+
+<section id="toolkit" class="doc-section">
+  <h2>Approach: borrowing formal tools from neighboring fields</h2>
+  <p>The papers that have influenced me most solve seemingly complex problems with an elegant abstraction borrowed from another domain. I want my doctoral research to work the same way: human-centered NLP problems, made precise with formal machinery from adjacent fields. I have been studying these fields through courses and the related literature to develop these ideas.</p>
+  <div class="tool-grid">
+    <div class="tool">
+      <span class="tool__name">Game theory</span>
+      <span class="tool__use">Stakeholders as players with context-dependent utilities. Models are judged by contextual regret, not majority agreement.</span>
+    </div>
+    <div class="tool">
+      <span class="tool__name">Psychometrics</span>
+      <span class="tool__use">Item response theory and construct validity to separate group-specific constructs and quantify item difficulty per population.</span>
+    </div>
+    <div class="tool">
+      <span class="tool__name">Causal inference</span>
+      <span class="tool__use">Structural causal models, causal discovery and transportability to reason about evaluation under context drift.</span>
+    </div>
+  </div>
+  <p>Both questions sit at the boundary between <strong>human-centered NLP</strong> and <strong>formal machine learning</strong>, and I don't think either can be answered well from one side alone. I bring depth in human-centered evaluation and domain-expert collaboration. I am looking for an environment that adds formal rigor in causality, psychometrics and game theory.</p>
+</section>
+
+<section id="references" class="doc-section">
+  <h2>References</h2>
+  <ol class="refs">
+    <li>A. Z. Jacobs and H. Wallach. Measurement and fairness. <em>FAccT</em>, 2021.</li>
+    <li>H. Wallach et al. Position: Evaluating generative AI systems is a social science measurement challenge. <em>arXiv:2502.00561</em>, 2025.</li>
+    <li>A. M. Bean et al. Measuring what matters: Construct validity in large language model benchmarks. <em>NeurIPS</em>, 2025.</li>
+    <li>O. Salaudeen et al. Measurement to meaning: A validity-centered framework for AI evaluation. <em>arXiv:2505.10573</em>, 2025.</li>
+    <li>B. Hutchinson et al. Evaluation gaps in machine learning practice. <em>FAccT</em>, 2022.</li>
+    <li>A. Mullick, I. Mondal*, <strong>S. Ray*</strong>, et al. Intent identification and entity extraction for healthcare queries in Indic languages. <em>Findings of EACL</em>, 2023.</li>
+    <li><strong>S. Ray</strong>, K. Gupta, S. Kundu, P. A. Kasat, S. Aditya, P. Goyal. ERVQA: A dataset to benchmark the readiness of large vision language models in hospital environments. <em>EMNLP</em>, 2024.</li>
+    <li><strong>S. Ray</strong>, S. Sharma, S. Aditya, P. Goyal. EduVidQA: Generating and evaluating long-form answers to student questions based on lecture videos. <em>EMNLP</em>, 2025.</li>
+    <li>R. Hunicke, M. LeBlanc, R. Zubek. MDA: A formal approach to game design and game research. <em>AAAI Workshop on Challenges in Game AI</em>, 2004.</li>
+    <li>A. Jacob, Y. Shen, G. Farina, J. Andreas. The consensus game: Language model generation via equilibrium search. <em>ICLR</em>, 2024.</li>
+    <li>C. Vania et al. Comparing test sets with item response theory. <em>ACL-IJCNLP</em>, 2021.</li>
+    <li>P. G. Sessa, I. Bogunovic, A. Krause, M. Kamgarpour. Contextual games: Multi-agent learning with side information. <em>NeurIPS</em>, 2020.</li>
+    <li>H. Zhou et al. Lost in benchmarks? Rethinking large language model benchmarking with item response theory. <em>AAAI</em>, 2026.</li>
+    <li>X. Mou et al. From individual to society: A survey on social simulation driven by large language model-based agents. <em>arXiv:2412.03563</em>, 2024.</li>
+    <li>X. Zhou et al. SOTOPIA: Interactive evaluation for social intelligence in language agents. <em>ICLR</em>, 2024.</li>
+    <li>J. Pearl and E. Bareinboim. External validity: From do-calculus to transportability across populations. In <em>Probabilistic and Causal Inference: The Works of Judea Pearl</em>, 2022.</li>
+  </ol>
+</section>

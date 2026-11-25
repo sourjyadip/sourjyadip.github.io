@@ -8,17 +8,29 @@ redirect_from:
   - /about.html
 ---
 
-I am a Predoctoral Visiting Researcher at [Microsoft Research India](https://www.microsoft.com/en-us/research/lab/microsoft-research-india/), where I work with [Dr. Sunayana Sitaram](https://www.microsoft.com/en-us/research/people/susitara/) and [Dr. Mohit Jain](https://www.microsoft.com/en-us/research/people/mohja/) on healthcare-focused **multi-agent social simulations** and on **benchmarking and evaluating synthetic data**. My position is sponsored by the Koita Center for Digital Health at Ashoka University.
+I am a Predoctoral Visiting Researcher at [Microsoft Research India](https://www.microsoft.com/en-us/research/lab/microsoft-research-india/), where I work with [Dr. Sunayana Sitaram](https://www.microsoft.com/en-us/research/people/susitara/) and [Dr. Mohit Jain](https://www.microsoft.com/en-us/research/people/mohja/) on **generating and evaluating synthetic clinical conversations** in Indian contexts, using healthcare-focused multi-agent social simulations. My position is sponsored by the Koita Center for Digital Health at Ashoka University.
 
-Before this, I did my MS (by Research) in Computer Science at **IIT Kharagpur** in the [CNeRG Lab](https://cnerg-iitkgp.github.io/), advised by [Dr. Pawan Goyal](https://cse.iitkgp.ac.in/~pawang/) and working closely with [Dr. Somak Aditya](https://adityasomak.github.io/). My thesis covers *human-centered benchmarking and evaluation of long-form multimodal question answering in specialized domains*. As part of it, I built [ERVQA](https://arxiv.org/abs/2410.06420) (EMNLP 2024), a benchmark that tests whether vision-language models are ready for hospital environments, and [EduVidQA](https://aclanthology.org/2025.emnlp-main.1760/) (EMNLP 2025), which studies long-form answers to students' questions about lecture videos.
+Before this, I did my MS (by Research) in Computer Science at **IIT Kharagpur** in the [CNeRG Lab](https://cnerg-iitkgp.github.io/), advised by [Dr. Pawan Goyal](https://cse.iitkgp.ac.in/~pawang/) and mentored by [Dr. Somak Aditya](https://adityasomak.github.io/). My thesis developed *human-centered benchmarks and evaluation methods* for long-form multimodal question answering, built with doctors for [ERVQA](https://arxiv.org/abs/2410.06420) (EMNLP 2024) and with students for [EduVidQA](https://aclanthology.org/2025.emnlp-main.1760/) (EMNLP 2025).
 
 ### Research interests
 
-My research asks one question: *how do we know whether an AI system is ready for the people and settings it is meant to serve?* I am especially interested in:
+I work on **human-centered methods for benchmarking and evaluating AI** in social NLP applications. Working closely with clinicians and learners showed me how differently technologists and real-world stakeholders judge the same system, and how risky it is to build AI from a single viewpoint. Borrowing *construct validity* from the social sciences, I treat a benchmark as an observable proxy for an unobservable construct that is defined by the people a system serves. Most benchmarks assume that construct is **singular and fixed**. In practice it is often **pluralistic and changes with context**. I want to develop rigorous theoretical and practical tools for that reality:
 
-- **Human-centered evaluation.** Stakeholder-aligned metrics and benchmarks that diagnose *where* and *why* models fail, at the process level, rather than reporting a single end-task score.
-- **Multimodal reasoning in high-stakes domains.** Vision-language and video-language models for healthcare and education, where answers must be long-form, grounded and trustworthy.
-- **Agentic simulation and synthetic data.** Multi-agent social simulations and world models: interpretable, causal accounts of agent behavior, and principled ways to decide when synthetic data can be trusted.
+- **Pluralistic evaluation.** How can we formally represent and evaluate constructs that accommodate non-convergent stakeholder values, rather than treating disagreement as noise? I am exploring ideas from *game theory* (stakeholders as players, models judged by contextual regret) and *psychometrics* (item response theory per stakeholder group).
+- **Evaluation under social context drift.** How can synthetic benchmarks model changing social contexts, and when do evaluation scores still hold in a new context? I see *multi-agent social simulations* as a controllable testbed and *causal analysis* (structural causal models, transportability) as a route to formal guarantees.
 {: .interests}
+
+<div class="feature-links">
+  <a class="feature-link" href="{{ '/research/' | relative_url }}">
+    <span class="feature-link__kicker">Research statement</span>
+    <span class="feature-link__title">Benchmarking for pluralistic, changing social contexts</span>
+    <span class="feature-link__more">Read the overview &rarr;</span>
+  </a>
+  <a class="feature-link" href="{{ '/thesis/' | relative_url }}">
+    <span class="feature-link__kicker">MS thesis</span>
+    <span class="feature-link__title">Human-centered benchmarking of long-form multimodal QA</span>
+    <span class="feature-link__more">See the summary &rarr;</span>
+  </a>
+</div>
 
 Outside research, I make music, watch a lot of films, and follow football and cricket.

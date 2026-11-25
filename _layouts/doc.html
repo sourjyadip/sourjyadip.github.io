@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% include site/head.html title=page.title description=page.description %}
+</head>
+
+<body class="doc-page">
+  <a class="skip" href="#content">Skip to content</a>
+{% include site/nav.html %}
+
+  <main id="top" class="wrap">
+    <header class="doc-hero">
+      <a class="doc-hero__back" href="{{ '/' | relative_url }}">&larr; {{ site.author.name }}</a>
+      {%- if page.kicker %}<p class="doc-hero__kicker">{{ page.kicker }}</p>{% endif %}
+      <h1 class="doc-hero__title">{{ page.heading | default: page.title }}</h1>
+      {%- if page.subtitle %}<p class="doc-hero__sub">{{ page.subtitle }}</p>{% endif %}
+      {%- if page.meta %}
+      <ul class="doc-hero__meta">
+        {%- for m in page.meta %}<li>{{ m | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}
+      </ul>
+      {%- endif %}
+      {%- if page.toc %}
+      <nav class="doc-toc" aria-label="On this page">
+        <span class="doc-toc__label">On this page</span>
+        {%- for t in page.toc %}<a href="#{{ t.id }}">{{ t.label }}</a>{% endfor %}
+      </nav>
+      {%- endif %}
+    </header>
+
+    <article id="content" class="doc">
+      {{ content }}
+    </article>
+  </main>
+
+{% include site/footer.html %}
+</body>
+</html>
